@@ -8,9 +8,8 @@ function Form() {
      }
   );
 
-}
 
-function handleChange(event) {
+  function handleChange(event) {
     const { name, value } = event.target;
     if (name === "job")
       setPerson(
@@ -40,4 +39,5 @@ function handleChange(event) {
         onChange={handleChange} />
     </form>
 );
+}
 export default Form;

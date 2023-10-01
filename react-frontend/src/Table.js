@@ -1,5 +1,14 @@
 import React from 'react'
 
+function Table(props) {
+    return (
+      <table>
+        <TableHeader />
+        <TableBody characterData={props.characterData} 
+          removeCharacter={props.removeCharacter} />
+      </table>
+    );
+  }
 function TableHeader() {
   return (
     <thead>
@@ -15,14 +24,6 @@ function TableBody(props) {
   const rows = props.characterData.map((row, index) => {
     return (
       <tr key={index}>
-        <td>{row.name}</td>
-        <td>{row.job}</td>
-      </tr>
-    );
-   }
-  );
-  return (
-    <tr key={index}>
 	  <td>{row.name}</td>
 	  <td>{row.job}</td>
 	  <td>
@@ -32,16 +33,11 @@ function TableBody(props) {
 			</button>
 	  </td>
 	</tr>
-   );
+    );
+   }
+  );
+  
 }
 
-function Table(props) {
-  return (
-    <table>
-      <TableHeader />
-      <TableBody characterData={props.characterData} 
-	      removeCharacter={props.removeCharacter} />
-    </table>
-  );
-}
+
 export default Table;
