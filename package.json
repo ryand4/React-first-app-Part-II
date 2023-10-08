@@ -4,5 +4,8 @@
     },
     "scripts": {
       "start": "cd react-Frontend && npm start"
-    }
+    },
+    "workspaces": [
+      "packages/*"
+    ] 
   }
