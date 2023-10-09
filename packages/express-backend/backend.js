@@ -51,18 +51,6 @@ const findAllUserByNameAndJob = (name, job) =>
                 return user;
         }
     );
-const deleteUserById = (id) => {
-    const index = users['users_list'].findIndex( (user, idx) => {
-        if (user.id === id){
-            return idx;
-        }
-    });
-    if (index === undefined){
-        return undefined;
-    } else {
-        return users['users_list'].splice(index, 1);
-    }
-}
 
 app.get('/users/:id', (req, res) => {
     const id = req.params['id'];
@@ -116,11 +104,13 @@ app.post('/users', (req, res) => {
 
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id'];
-    let result = deleteUserById(id);
-    if (result === undefined) {
+    let result = findUserById(id);
+    if (result === undefined || result.length == 0)
         res.status(404).send('Resource not found.');
-    } else {
-        res.status(204).send(result);
+    else {
+       let ind = users['users_list'].indexOf(result);
+       result = {users_list : users['users_list'].splice(ind, 1)};
+       res.status(204).send(result);
     }
 })
 
