@@ -103,7 +103,7 @@ app.get('/', (req, res) => {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
-    res.send();
+    res.status(201).send('Content Created');
 })
 
 app.delete('/users/:id', (req, res) => {
