@@ -1,9 +1,17 @@
-import React, {useState} from 'react';
+//import React, {useState} from 'react';
 import Table from './Table';
 import Form from './Form';
+import React, {useState, useEffect} from 'react';
 
 function MyApp() {
-	const [characters, setCharacters] = useState([]);  
+	useEffect(() => {
+    fetchUsers()
+      .then((res) => res.json())
+      .then((json) => setCharacters(json["users_list"]))
+      .catch((error) => { console.log(error); });
+  }, [] );
+
+  const [characters, setCharacters] = useState([]);  
   //<Form handleSubmit={updateList} />
 
 	function removeOneCharacter (index) {
@@ -21,7 +29,10 @@ function MyApp() {
   //  props.handleSubmit(person);
   //  setPerson({name: '', job: ''});
   //}
-
+  function fetchUsers() {
+    const promise = fetch("http://localhost:8000/users");
+    return promise;
+  }
   return (
 
     <div className="container">
