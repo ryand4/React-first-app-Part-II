@@ -111,7 +111,7 @@ app.post('/users', (req, res) => {
     const newID = generateID();
     userToAdd.id = newID;
     addUser(userToAdd);
-    res.status(201).send('Content Created');
+    res.status(201).send(userToAdd);
 })
 
 app.delete('/users/:id', (req, res) => {

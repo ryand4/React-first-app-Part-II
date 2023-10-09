@@ -25,9 +25,13 @@ function MyApp() {
     postUser(person)
       .then( (res) => {
         if (res.status === 201){
-          setCharacters([...characters, person]);
-          }
-      })
+          res.json().then(
+            (json) => {
+            console.log(json);
+            setCharacters([...characters, json]);
+        })
+        .catch( (error) => console.log(error));
+      }})
       .catch( (error) => console.log(error) );
     }
   //function submitForm() {
