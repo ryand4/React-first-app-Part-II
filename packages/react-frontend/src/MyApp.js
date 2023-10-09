@@ -15,10 +15,16 @@ function MyApp() {
   //<Form handleSubmit={updateList} />
 
 	function removeOneCharacter (index) {
-	    const updated = characters.filter((character, i) => {
-	        return i !== index
-	    });
-	  setCharacters(updated);
+    const characterToDelete = characters[index];
+
+    fetch(`http://localhost:8000/users/${characterToDelete.id}`, {method: "DELETE",})
+        .then((res) => {
+          if (res.status === 204){
+            const updated = characters.filter((character, i) => i !== index);
+            setCharacters(updated);
+          }
+        }
+    );
 	}
 
   function updateList(person) { 
