@@ -100,8 +100,16 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+function generateID() {
+    const random = Math.random().toString();
+    const id = random.substring(2);
+    return id;
+}
+
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
+    const newID = generateID();
+    userToAdd.id = newID;
     addUser(userToAdd);
     res.status(201).send('Content Created');
 })
